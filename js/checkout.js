@@ -112,12 +112,20 @@ function goToPayment() {
 // Go to Confirmation Step
 function goToConfirmation() {
     // Get selected payment method
-    const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
-    orderData.payment = paymentMethod;
-    
+    const paymentMethodInput = document.querySelector('input[name="payment"]:checked').value;
+
+    // Map payment method values to database values
+    const paymentMethodMap = {
+        'cod': 'cash',
+        'bank': 'bank_transfer',
+        'online': 'online'
+    };
+
+    orderData.payment = paymentMethodMap[paymentMethodInput] || paymentMethodInput;
+
     // Display review information
     displayReviewInfo();
-    
+
     // Move to confirmation step
     document.getElementById('paymentSection').style.display = 'none';
     document.getElementById('confirmSection').style.display = 'block';
