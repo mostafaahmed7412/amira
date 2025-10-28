@@ -116,9 +116,9 @@ function confirmDelete(productId) {
 }
 
 // Update Quantity
-function updateQuantity(productId, newQuantity) {
+async function updateQuantity(productId, newQuantity) {
     if (newQuantity < 1) {
-        const cartItems = Cart.getItems();
+        const cartItems = await Cart.getItems();
         const item = cartItems.find(i => i.id === productId);
         showDeleteConfirmation(productId, item?.name || 'المنتج');
         return;
@@ -129,8 +129,8 @@ function updateQuantity(productId, newQuantity) {
 }
 
 // Remove Item
-function removeItem(productId) {
-    const cartItems = Cart.getItems();
+async function removeItem(productId) {
+    const cartItems = await Cart.getItems();
     const item = cartItems.find(i => i.id === productId);
     showDeleteConfirmation(productId, item?.name || 'المنتج');
 }
