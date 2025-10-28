@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - الهوس اللطيف</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-logo">
+                <h1> الهوس اللطيف - لوحة التحكم</h1>
+            </div>
+            <div class="admin-actions">
+                <span id="adminName">مرحبًا، المدير</span>
+                <button class="btn btn-secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i> لوحة التحكم
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="products">
+                    <i class="fas fa-box"></i> المنتجات
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="orders">
+                    <i class="fas fa-shopping-bag"></i> الطلبات
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="coupons">
+                    <i class="fas fa-ticket-alt"></i> الكوبونات
+                </a></li>
+                <li><a href="#" class="nav-link" data-section="messages">
+                    <i class="fas fa-envelope"></i> الرسائل
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Admin Content -->
+    <div class="admin-content">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="admin-section active">
+                <h2>لوحة التحكم</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-shopping-bag"></i>
+                        <div>
+                            <h3 id="totalOrders">0</h3>
+                            <p>إجمالي الطلبات</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div>
+                            <h3 id="totalRevenue">0 ريال</h3>
+                            <p>إجمالي الإيرادات</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-box"></i>
+                        <div>
+                            <h3 id="totalProducts">0</h3>
+                            <p>عدد المنتجات</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3 id="totalMessages">0</h3>
+                            <p>الرسائل الجديدة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-orders">
+                    <h3>آخر الطلبات</h3>
+                    <div id="recentOrdersList"></div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products-section" class="admin-section">
+                <h2>إدارة المنتجات</h2>
+                <button class="btn btn-primary" onclick="openAddProductModal()">
+                    <i class="fas fa-plus"></i> إضافة منتج جديد
+                </button>
+                <div id="productsList" class="products-list"></div>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="orders-section" class="admin-section">
+                <h2>إدارة الطلبات</h2>
+                <div id="ordersList" class="orders-list"></div>
+            </section>
+
+            <!-- Coupons Section -->
+            <section id="coupons-section" class="admin-section">
+                <h2>إدارة الكوبونات</h2>
+                <button class="btn btn-primary" onclick="openAddCouponModal()">
+                    <i class="fas fa-plus"></i> إضافة كوبون جديد
+                </button>
+                <div id="couponsList" class="coupons-list"></div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messages-section" class="admin-section">
+                <h2>الرسائل</h2>
+                <div id="messagesList" class="messages-list"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProductModal()">&times;</span>
+            <h2>إضافة منتج جديد</h2>
+            <form id="productForm">
+                <div class="form-group">
+                    <label>اسم المنتج</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label>السعر</label>
+                    <input type="number" id="productPrice" required>
+                </div>
+                <div class="form-group">
+                    <label>الفئة</label>
+                    <select id="productCategory" required>
+                        <option value="cups">كوبيات ومجات</option>
+                        <option value="decor">ديكورات</option>
+                        <option value="gifts">هدايا</option>
+                        <option value="flowers">ورد مجفف</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>الوصف</label>
+                    <textarea id="productDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>صورة المنتج</label>
+                    <div style="border: 2px dashed var(--primary-color); border-radius: 10px; padding: 1.5rem; text-align: center; cursor: pointer; background: #f8f9fa;" id="uploadArea" onclick="document.getElementById('productImageInput').click()">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--primary-color);"></i>
+                        <p style="margin-top: 0.5rem; margin-bottom: 0;">اسحبي الصورة هنا أو اضغطي للاختيار</p>
+                        <small>الحد الأقصى: 5MB</small>
+                    </div>
+                    <input type="file" id="productImageInput" accept="image/*" style="display: none;">
+                    <img id="productImagePreview" style="max-width: 200px; max-height: 200px; margin-top: 1rem; border-radius: 10px; display: none;">
+                    <input type="hidden" id="productImage">
+                </div>
+                <div class="form-group">
+                    <label>الكمية المتاحة</label>
+                    <input type="number" id="productStock" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="productFeatured"> منتج مميز
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="productNew"> منتج جديد
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">حفظ المنتج</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Coupon Modal -->
+    <div id="couponModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCouponModal()">&times;</span>
+            <h2>إضافة كوبون جديد</h2>
+            <form id="couponForm">
+                <div class="form-group">
+                    <label>كود الكوبون</label>
+                    <input type="text" id="couponCode" required>
+                </div>
+                <div class="form-group">
+                    <label>نوع الخصم</label>
+                    <select id="couponType" required>
+                        <option value="percentage">نسبة مئوية</option>
+                        <option value="fixed">مبلغ ثابت</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>قيمة الخصم</label>
+                    <input type="number" id="couponDiscount" required>
+                </div>
+                <button type="submit" class="btn btn-primary">حفظ الكوبون</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/supabase-database.js"></script>
+    <!-- App Scripts -->
+    <script src="../js/app.js"></script>
+    <script src="js/admin.js"></script>
+
+    <script>
+        // Handle product image upload
+        const uploadArea = document.getElementById('uploadArea');
+        const imageInput = document.getElementById('productImageInput');
+        const imagePreview = document.getElementById('productImagePreview');
+        const imageUrlInput = document.getElementById('productImage');
+
+        if (uploadArea && imageInput) {
+            uploadArea.addEventListener('click', () => {
+                imageInput.click();
+            });
+
+            imageInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                try {
+                    // Upload to Supabase - استخدام اسم ملف بدون أحرف عربية
+                    const fileExt = file.name.split('.').pop();
+                    const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`;
+                    const { data, error } = await supabaseClient.storage
+                        .from('products')
+                        .upload(fileName, file);
+
+                    if (error) {
+                        throw error;
+                    }
+
+                    // Get public URL
+                    const { data: publicData } = supabaseClient.storage
+                        .from('products')
+                        .getPublicUrl(fileName);
+
+                    imageUrlInput.value = publicData.publicUrl;
+                    imagePreview.src = publicData.publicUrl;
+                    imagePreview.style.display = 'block';
+                    showNotification('تم رفع الصورة بنجاح', 'success');
+                } catch (error) {
+                    console.error('خطأ في رفع الصورة:', error);
+                    showNotification('خطأ في رفع الصورة', 'error');
+                }
+            });
+
+            // Drag and drop
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.backgroundColor = 'var(--light-color)';
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.style.backgroundColor = '#f8f9fa';
+            });
+
+            uploadArea.addEventListener('drop', async (e) => {
+                e.preventDefault();
+                uploadArea.style.backgroundColor = '#f8f9fa';
+
+                const file = e.dataTransfer.files[0];
+                if (file) {
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    imageInput.files = dataTransfer.files;
+
+                    const event = new Event('change', { bubbles: true });
+                    imageInput.dispatchEvent(event);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+

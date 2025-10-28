@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهوس اللطيف - متجر الهدايا اليدوية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-link {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.jpeg" alt="الهوس اللطيف" class="logo-img">
+                <div class="logo-text">
+                    <h1>الهوس اللطيف</h1>
+                    <p class="tagline">صُنع بحب وإبداع</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html" class="active">الرئيسية</a></li>
+                    <li><a href="products.html">المنتجات</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="admin/login.html" class="admin-link">
+                    <i class="fas fa-user-shield"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>اكتشفي عالم الجمال اليدوي</h2>
+            <p>منتجات فريدة مصنوعة بحب خصيصًا لك</p>
+            <a href="products.html" class="btn btn-primary">تسوقي الآن</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">تصفحي حسب الفئة</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-category="cups">
+                    <div class="category-icon">☕</div>
+                    <h3>كوبيات ومجات</h3>
+                    <p>تصاميم زهرية مميزة</p>
+                </div>
+                <div class="category-card" data-category="decor">
+                    <div class="category-icon">🏺</div>
+                    <h3>ديكورات</h3>
+                    <p>لمسات جمالية لمنزلك</p>
+                </div>
+                <div class="category-card" data-category="gifts">
+                    <div class="category-icon">🎁</div>
+                    <h3>هدايا</h3>
+                    <p>هدايا مميزة لأحبائك</p>
+                </div>
+                <div class="category-card" data-category="flowers">
+                    <div class="category-icon">🌺</div>
+                    <h3>ورد مجفف</h3>
+                    <p>جمال طبيعي دائم</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">المنتجات المميزة</h2>
+            <div class="products-grid" id="featuredProducts">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- New Products -->
+    <section class="new-products">
+        <div class="container">
+            <h2 class="section-title">وصل حديثًا</h2>
+            <div class="products-grid" id="newProducts">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>صُنع بحب</h3>
+                    <p>كل منتج مصنوع يدويًا بعناية فائقة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>شحن سريع</h3>
+                    <p>توصيل سريع لجميع المناطق</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-star"></i>
+                    <h3>جودة عالية</h3>
+                    <p>مواد خام عالية الجودة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-gift"></i>
+                    <h3>تغليف مميز</h3>
+                    <p>تغليف أنيق مناسب للهدايا</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🌸 الهوس اللطيف</h3>
+                    <p>متجر إلكتروني متخصص في بيع المنتجات اليدوية المميزة</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="products.html">المنتجات</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعينا</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 الهوس اللطيف. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-database.js"></script>
+    <!-- App Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>
+

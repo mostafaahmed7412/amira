@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تم الطلب بنجاح - الهوس اللطيف</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-link {
+            display: none !important;
+        }
+
+        .success-container {
+            max-width: 600px;
+            margin: 4rem auto;
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: scaleIn 0.5s ease;
+        }
+        
+        .success-icon i {
+            font-size: 3rem;
+            color: white;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .order-id {
+            background: var(--light-color);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .order-details {
+            text-align: right;
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .order-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .actions .btn {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.jpeg" alt="الهوس اللطيف" class="logo-img">
+                <div class="logo-text">
+                    <h1>الهوس اللطيف</h1>
+                    <p class="tagline">صُنع بحب وإبداع</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="products.html">المنتجات</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Success Content -->
+    <div class="container">
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            
+            <h1 style="color: var(--primary-color); margin-bottom: 1rem;">تم استلام طلبك بنجاح! 🎉</h1>
+            <p style="color: var(--gray-color); font-size: 1.1rem;">شكرًا لك على الطلب من متجرنا</p>
+            
+            <div class="order-id">
+                رقم الطلب: <span id="orderIdDisplay"></span>
+            </div>
+            
+            <div class="order-details" id="orderDetails">
+                <!-- Order details will be loaded here -->
+            </div>
+            
+            <div style="background: #fff3cd; padding: 1rem; border-radius: 10px; margin: 1.5rem 0; border-right: 4px solid #ffc107;">
+                <p style="color: #856404; margin: 0;">
+                    <i class="fas fa-info-circle"></i>
+                    سيتم التواصل معك قريبًا لتأكيد الطلب وترتيب التوصيل
+                </p>
+            </div>
+            
+            <div class="actions">
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-home"></i> الصفحة الرئيسية
+                </a>
+                <a href="products.html" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i> متابعة التسوق
+                </a>
+            </div>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                <p style="color: var(--gray-color); margin-bottom: 1rem;">شاركي تجربتك معنا</p>
+                <div class="social-links" style="justify-content: center;">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://wa.me/966501234567" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🌸 الهوس اللطيف</h3>
+                    <p>متجر إلكتروني متخصص في بيع المنتجات اليدوية المميزة</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="products.html">المنتجات</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعينا</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 الهوس اللطيف. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-database.js"></script>
+    <!-- App Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Get order ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+
+            if (!orderId) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Display order ID
+            document.getElementById('orderIdDisplay').textContent = orderId;
+
+            try {
+                // Get order details from Supabase
+                const { data: order } = await supabaseClient
+                    .from('orders')
+                    .select('*')
+                    .eq('id', orderId)
+                    .single();
+
+                if (order) {
+                    const paymentMethods = {
+                        'cod': 'الدفع عند الاستلام',
+                        'bank': 'تحويل بنكي',
+                        'online': 'الدفع الإلكتروني'
+                    };
+
+                    const detailsHTML = `
+                        <h3>تفاصيل الطلب</h3>
+                        <div class="detail-row">
+                            <span>الاسم:</span>
+                            <strong>${order.full_name || 'غير محدد'}</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>الجوال:</span>
+                            <strong>${order.phone || 'غير محدد'}</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>العنوان:</span>
+                            <strong>${order.address || 'غير محدد'}</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>طريقة الدفع:</span>
+                            <strong>${paymentMethods[order.payment_method] || 'غير محدد'}</strong>
+                        </div>
+                        <div class="detail-row" style="font-size: 1.2rem; color: var(--primary-color);">
+                            <span>الإجمالي:</span>
+                            <strong>${formatCurrency(order.total_amount || 0)}</strong>
+                        </div>
+                    `;
+
+                    document.getElementById('orderDetails').innerHTML = detailsHTML;
+                } else {
+                    document.getElementById('orderDetails').innerHTML = '<p style="color: var(--gray-color);">لم يتم العثور على تفاصيل الطلب</p>';
+                }
+            } catch (error) {
+                console.error('خطأ في جلب تفاصيل الطلب:', error);
+                document.getElementById('orderDetails').innerHTML = '<p style="color: var(--gray-color);">حدث خطأ في تحميل تفاصيل الطلب</p>';
+            }
+        });
+    </script>
+</body>
+</html>
+
