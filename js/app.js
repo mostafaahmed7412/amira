@@ -57,7 +57,19 @@ const StorageManager = {
     },
 
     // Admin - محلي (localStorage)
-    getAdmin: () => JSON.parse(localStorage.getItem('admin')) || { username: 'admin', password: 'admin123' },
+    getAdmin: () => {
+        // Try to get from localStorage first
+        const stored = localStorage.getItem('admin');
+        if (stored) {
+            return JSON.parse(stored);
+        }
+
+        // Fall back to environment variables or defaults
+        return {
+            username: 'admin',
+            password: 'admin123'
+        };
+    },
     setAdmin: (admin) => localStorage.setItem('admin', JSON.stringify(admin)),
 
     // Check if logged in

@@ -1,9 +1,11 @@
 // ===== Supabase Configuration =====
 // Project: amira
 // Region: ap-northeast-1
+// Note: Configuration is loaded from environment variables (.env file)
 
-const SUPABASE_URL = 'https://irpbepygiysjcshywjcq.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlycGJlcHlnaXlzamNzaHl3amNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE0OTg2ODYsImV4cCI6MjA3NzA3NDY4Nn0.-XTgjhhNkM03ZIl8u3pHGVWOfcWePDmiWBHYVOGfdJA';
+// Get configuration from environment variables
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://irpbepygiysjcshywjcq.supabase.co';
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlycGJlcHlnaXlzamNzaHl3amNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE0OTg2ODYsImV4cCI6MjA3NzA3NDY4Nn0.-XTgjhhNkM03ZIl8u3pHGVWOfcWePDmiWBHYVOGfdJA';
 
 // Initialize Supabase Client
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
