@@ -198,46 +198,68 @@
         // Form submit
         document.getElementById('productForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const imageUrl = document.getElementById('imageUrl').value;
             if (!imageUrl) {
                 showNotification('الرجاء رفع صورة المنتج', 'error');
                 return;
             }
-            
+
             // Disable submit button
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
-            
-            const product = {
-                id: Date.now(),
-                name: document.getElementById('productName').value,
-                description: document.getElementById('productDescription').value,
-                price: parseFloat(document.getElementById('productPrice').value),
-                category: document.getElementById('productCategory').value,
-                image: imageUrl,
-                imagePath: document.getElementById('imagePath').value,
-                createdAt: new Date().toISOString()
-            };
-            
-            // Save to localStorage
-            let products = JSON.parse(localStorage.getItem('products') || '[]');
-            products.push(product);
-            localStorage.setItem('products', JSON.stringify(products));
-            
-            showNotification('تم إضافة المنتج بنجاح!', 'success');
-            
-            // Reset form
-            document.getElementById('productForm').reset();
-            document.getElementById('imagePreview').style.display = 'none';
-            document.getElementById('imageUrl').value = '';
-            document.getElementById('imagePath').value = '';
-            submitBtn.disabled = false;
-            
-            // Redirect after 2 seconds
-            setTimeout(() => {
-                window.location.href = 'dashboard.html';
-            }, 2000);
+
+            try {
+                // Map category value to category_id
+                const categoryMap = {
+                    'accessories': '4a2f6114-39ba-4ffa-9276-a31584d89639',
+                    'home': 'b1ebc344-d533-4b66-84ef-94590572c9fe',
+                    'gifts': 'd90cb589-85f0-4770-8af5-cd78983c2125',
+                    'handmade': '0eed0e27-5544-49d6-81f2-7fc8f45583b1'
+                };
+
+                const categoryValue = document.getElementById('productCategory').value;
+                const categoryId = categoryMap[categoryValue] || categoryMap['accessories'];
+
+                const productData = {
+                    name: document.getElementById('productName').value,
+                    name_ar: document.getElementById('productName').value,
+                    description: document.getElementById('productDescription').value,
+                    price: parseFloat(document.getElementById('productPrice').value),
+                    category_id: categoryId,
+                    image_url: imageUrl,
+                    stock_quantity: 10, // Default stock
+                    is_featured: false,
+                    is_active: true
+                };
+
+                // Save to Supabase
+                const { data, error } = await supabaseClient
+                    .from('products')
+                    .insert([productData])
+                    .select();
+
+                if (error) {
+                    throw error;
+                }
+
+                showNotification('تم إضافة المنتج بنجاح!', 'success');
+
+                // Reset form
+                document.getElementById('productForm').reset();
+                document.getElementById('imagePreview').style.display = 'none';
+                document.getElementById('imageUrl').value = '';
+                document.getElementById('imagePath').value = '';
+
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+            } catch (error) {
+                console.error('خطأ في إضافة المنتج:', error);
+                showNotification('حدث خطأ في إضافة المنتج: ' + error.message, 'error');
+                submitBtn.disabled = false;
+            }
         });
     </script>
 </body>
