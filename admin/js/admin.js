@@ -448,7 +448,8 @@ async function loadMessages() {
 
 // Open Add Product Modal
 function openAddProductModal() {
-    document.getElementById('productModal').classList.add('active');
+    // Navigate to add-product.html instead of opening a modal
+    window.location.href = 'add-product.html';
 }
 
 // Close Product Modal
